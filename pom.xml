@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  このファイルは Maven の設定ファイルです。
+  主に以下を管理します。
+  ・使用するライブラリ（JDAなど）
+  ・Javaのバージョン
+  ・ビルド設定
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- Mavenのバージョン（基本固定） -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- ========================= -->
+  <!-- プロジェクト基本情報 -->
+  <!-- ========================= -->
+
+  <!-- 組織名（パッケージと合わせる） -->
+  <groupId>com.portfolio</groupId>
+
+  <!-- プロジェクト名 -->
+  <artifactId>discordtaskbot</artifactId>
+
+  <!-- バージョン（開発中はSNAPSHOT） -->
+  <version>0.0.1-SNAPSHOT</version>
+
+  <!-- 表示用の名前 -->
+  <name>discordtaskbot</name>
+
+  <!-- プロジェクトURL（今回は未使用） -->
+  <url>http://www.example.com</url>
+
+  <!-- ========================= -->
+  <!-- 共通設定 -->
+  <!-- ========================= -->
+  <properties>
+
+    <!-- 文字コード（日本語対応・文字化け防止） -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Javaのバージョン指定 -->
+    <!-- releaseを使うことで環境差異を防ぐ -->
+    <maven.compiler.release>17</maven.compiler.release>
+
+  </properties>
+
+  <!-- ========================= -->
+  <!-- 依存関係のバージョン管理 -->
+  <!-- ========================= -->
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- JUnitのバージョンをまとめて管理 -->
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.11.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- ========================= -->
+  <!-- 使用するライブラリ -->
+  <!-- ========================= -->
+  <dependencies>
+
+    <!-- ========== テスト関連 ========== -->
+
+    <!-- 単体テスト用 -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- パラメータ付きテスト -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ========== Discord Bot関連 ========== -->
+
+    <!--
+      JDA（Java Discord API）
+      Discordと通信するためのライブラリ
+    -->
+    <dependency>
+      <groupId>net.dv8tion</groupId>
+      <artifactId>JDA</artifactId>
+      <version>6.4.1</version>
+    </dependency>
+    
+     <!-- JSON 変換用ライブラリ -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.17.2</version>
+    </dependency>
+    
+    <!-- LocalDate を JSON で扱うための追加モジュール -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.17.2</version>
+    </dependency>
+
+  </dependencies>
+
+  <!-- ========================= -->
+  <!-- ビルド設定 -->
+  <!-- ========================= -->
+  <build>
+
+    <!-- プラグインのバージョン固定（安定動作のため） -->
+    <pluginManagement>
+      <plugins>
+
+        <!-- クリーン（targetフォルダ削除） -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.4.0</version>
+        </plugin>
+
+        <!-- リソース処理 -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.3.1</version>
+        </plugin>
+
+        <!-- Javaコンパイル -->
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.13.0</version>
+        </plugin>
+
+        <!-- テスト実行 -->
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+
+        <!-- jar生成 -->
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.4.2</version>
+        </plugin>
+
+        <!-- ローカルインストール -->
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.1.2</version>
+        </plugin>
+
+        <!-- デプロイ -->
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>3.1.2</version>
+        </plugin>
+
+        <!-- サイト生成 -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.12.1</version>
+        </plugin>
+
+        <!-- レポート生成 -->
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.6.1</version>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+  </build>
+
+</project>

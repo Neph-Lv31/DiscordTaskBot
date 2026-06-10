@@ -1,0 +1,17 @@
+# ==========================
+# Discord Bot 設定ファイルのサンプル
+# ==========================
+# このファイルは GitHub に公開してよいサンプルです。
+# 実際の Bot Token は絶対に書かないでください。
+#
+# 使用する場合は、このファイルをコピーして
+# config.properties という名前に変更してください。
+#
+# 例：
+# config.properties.example
+# ↓ コピーして名前変更
+# config.properties
+
+# Discord Developer Portal で取得した Bot Token を設定します。
+# 注意：ここには本物のTokenを書かず、config.properties側に書いてください。
+discord.token=YOUR_DISCORD_BOT_TOKEN_HERE
